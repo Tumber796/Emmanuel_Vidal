@@ -1,0 +1,42 @@
+Inicio
+    Escribir "Ingresa el valor de A:"
+    Leer A
+    Escribir "Ingresa el valor de B:"
+    Leer B
+    Escribir "Ingresa el valor de C:"
+    Leer C
+
+    Si A = 0 Y B = 0 Y C = 0 Entonces
+        Escribir "Los valores no indican figura"
+
+    Sino Si A > 0 Y B = 0 Y C = 0 Entonces
+        Escribir "La figura es un círculo"
+
+    Sino Si A > 0 Y A = B Y C = 0 Entonces
+        Escribir "La figura es un cuadrado"
+
+    Sino Si A > 0 Y B > 0 Y A != B Y C = 0 Entonces
+        Escribir "La figura es un rectángulo"
+
+    Sino Si A > 0 Y B > 0 Y C > 0 Entonces
+
+        Si A + B > C Y A + C > B Y B + C > A Entonces
+
+            Si A = B Y B = C Entonces
+                Escribir "La figura es un triángulo equilátero"
+
+            Sino Si A != B Y A != C Y B != C Entonces
+                Escribir "La figura es un triángulo escaleno"
+
+            Sino
+                Escribir "La figura es un triángulo isósceles"
+            Fin Si
+
+        Sino
+            Escribir "Los valores no indican figura"
+        Fin Si
+
+    Sino
+        Escribir "Los valores no indican figura"
+    Fin Si
+Fin
