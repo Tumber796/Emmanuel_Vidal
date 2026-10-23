@@ -1,0 +1,16 @@
+INICIO
+  REPETIR
+  	Escribir (“Ingresa el lado a del rectángulo: ”);
+  	Leer (a);
+  	Escribir (“\n”);
+  	Escribir (“Ingresa el lado b del rectángulo: “);
+  	Leer (b);
+  	SI a<1 Y b<1 ENTONCES
+  		Escribir (“Ninguno de los valores puede ser 0 \n”
+  HASTA a<1 Y b<1
+  SI a=b ENTONCES
+  	Escribir (“El resultado del área es:  ", a*b, " y es un cuadrado");
+  SINO
+  	Escribir (“El resultado del área es:  ", a*b, "\n”);
+  FIN-SI
+FIN
