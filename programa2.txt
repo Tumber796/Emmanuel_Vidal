@@ -1,0 +1,143 @@
+INICIO
+	DEFINIR A, B, C, opcion COMO ENTERO;
+    DEFINIR figura Identificada COMO LOGICO;
+
+  	figuraIdentificada <- FALSO;
+
+ 	REPETIR
+    	mostrarMenu();
+    	Leer opcion;
+    	EN CASO (opcion) SEA:
+      		CASO 1: Escribir ("Ingresa el valor de A: ");
+					Leer A;
+					Escribir ("Ingresa el valor de B: ");
+					Leer B;
+					Escribir ("Ingresa el valor de C: ");
+					Leer C;
+					Escribir ("tipoFigura(A, B, C));
+					SI tipoFigura(A, B, C) = "Los valores no indican figura" ENTONCES
+						figuraIdentificada -> FALSO;
+					SINO
+						figuraIdentificada -> VERDADERO;
+					FIN-SI
+			CASO 2: SI figuraIdentificada = FALSO ENTONCES
+						Escribir("Los valores no indican figura, determine la figura en la opcion 1")
+						calcularArea(A, B, C);
+			CASO 3: Escribir("Hasta la proxima");				
+			OTRO CASO: Escribir("Opcion no valida");
+		FIN-CASO
+	HASTA opcion = 3;
+FIN
+
+PROCEDIMIENTO mostrarMenu()
+	Escribir("1.- Determine Figura");
+	Escribir("2.- Calcule Area");
+	Escribir("3.- Salir");
+	Escribir("> ");
+FIN-mostrarMenu
+
+FUNCION tipoFigura(A : ENTERO, B : ENTERO, C : ENTERO) -> CADENA
+	SI A = 0 Y B = 0 Y C = 0 ENTONCES
+		REGRESAR "Los valores no indican figura";
+		
+	SINO SI (A > 0 Y B = 0 Y C = 0) O
+			(A = 0 Y B > 0 Y C = 0) O
+			(A = 0 Y B = 0 Y C > 0) ENTONCES
+				REGRESAR "La figura es un circulo";
+
+	SINO SI (A > 0 Y A = B Y C = 0) O
+            (A > 0 Y B = 0 Y A = C) O
+            (A = 0 Y B > 0 Y C = B) ENTONCES
+	 			REGRESAR "La figura es un cuadrado";
+
+	SINO SI (A > 0 Y B > 0 Y A ≠ B Y C = 0) O
+            (A > 0 Y B = 0 Y C > 0 Y A ≠ C) O
+            (A = 0 Y B > 0 Y B ≠ C Y C > 0) ENTONCES
+				REGRESAR "La figura es un rectangulo";
+
+	SINO SI A > 0 Y B > 0 Y C > 0 ENTONCES
+		SI A + B < C Y A + C > B Y B + C > A ENTONCES
+			SI A = B Y B = C ENTONCES
+				REGRESAR "La figura es un triangulo equilatero";
+			SINO SI A ≠ B Y A ≠ C Y B ≠ C ENTONCES
+				REGRESAR "La figura es un triangulo escaleno";
+			SINO
+				REGRESAR "La figura es un triangulo isosceles";
+			FIN-SI
+		SINO
+			REGRESAR "Los valores no indican figura";
+		FIN-SI
+FIN-tipoFigura
+
+PROCEDIMIENTO calcularArea(A : ENTERO, B : ENTERO, C : ENTERO)
+
+	//Condiciones para obtener el area de un Circulo
+	SI A > 0 Y B = 0 Y C = 0 ENTONCES
+		Escribir("Circulo; area = ", PI * A * A;
+		REGRESAR;
+	FIN-SI
+	SI A = 0 Y B > 0 Y C = 0 ENTONCES
+		Escribir("Circulo; area = ", PI * A * A;
+		REGRESAR;
+	FIN-SI
+	SI A = 0 Y B = 0 Y C > 0 ENTONCES
+		Escribir("Circulo; area = ", PI * A * A;
+		REGRESAR;
+	FIN-SI
+
+	//Condiciones para obtener el area de un Cuadrado
+    SI A > 0 Y A = B Y C = 0 ENTONCES
+        ESCRIBIR "Cuadrado; area = ", A * B
+        REGRESAR;
+    FIN-SI
+    SI A > 0 Y B = 0 Y A = C ENTONCES
+        ESCRIBIR "Cuadrado; area = ", A * C
+        REGRESAR;
+    FIN-SI
+
+    SI A = 0 Y B > 0 Y C = B ENTONCES
+        ESCRIBIR "Cuadrado; area = ", B * C
+        REGRESAR;
+    FIN-SI
+
+    //Condiciones para obtener el area de un Rectangulo
+    SI A > 0 Y B > 0 Y A ≠ B Y C = 0 ENTONCES
+        ESCRIBIR "Rectangulo; area = ", A * B;
+        REGRESAR;
+    FIN-SI
+    SI A > 0 Y B = 0 Y C > 0 Y A ≠ C ENTONCES
+        ESCRIBIR "Rectangulo; area = ", A * C;
+        REGRESAR;
+    FIN-SI
+    SI A = 0 Y B > 0 Y B ≠ C Y C > 0 ENTONCES
+        ESCRIBIR "Rectangulo; area = ", B * C;
+        REGRESAR;
+    FIN-SI
+
+    //Condicion para obtener el area de un Triangulo equilatero
+    SI tipoFigura(A, B, C) = "La figura es un triangulo equilatero" ENTONCES
+		area <- (A * A * sqrt(3)) / 4;
+		Escribir("Triangulo equilatero; area = ", area);
+		REGRESAR;
+	FIN-SI
+	
+	//Condicion para obtener el area de un Triangulo isosceles
+    SI tipoFigura(A, B, C) = "La figura es un triangulo isosceles" ENTONCES
+		SI A = B ENTONCES
+			area <- (C / 4.0) * sqrt(4.0 * A * A - C * C);
+		SINO SI A = C ENTONCES
+			area <- (B / 4.0) * sqrt(4.0 * A * A - B * B);
+		SINO
+			area <- (A / 4.0) * sqrt(4.0 * B * B - A * A);
+			FIN-SI
+		FIN-SI
+		Escribir("Triangulo isosceles; area = ", area);
+		
+    SI tipoFigura(A, B, C) = "La figura es un triangulo escaleno" ENTONCES
+    	semiper <- (A + B + C) / 2.0;
+        area <- RAIZ(semiper * (semiper - A) * (semiper - B) * (semiper - C));
+		Escribir("Triangulo escaleno; area = ", area);
+		REGRESAR;
+    FIN-SI
+FIN-calcularArea
+						
