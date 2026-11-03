@@ -154,7 +154,8 @@ int main() {
 			    break;
 			case 2:
 				if(!figuraIdentificada){
-					cout << "Los valores no indican figura, determine la figura en la opcion 1" << endl << endl;
+					cout << "Los valores no indican figura, determine la figura en la opcion 1"
+						 << endl << endl;
 				} else {
 					calcularArea(A ,B ,C);
 					cout << endl;
